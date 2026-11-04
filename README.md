@@ -1,111 +1,263 @@
-# Production MLOps Platform (Starter)
+# 🚀 Production MLOps Platform
 
-**An educational engineering starter, not a production MLOps platform.** Trains a reproducible logistic regression model on *synthetic* customer-churn labels, exposes predictions with FastAPI, and provides a Streamlit UI. Includes validation, tests, Docker and GitHub Actions.
+### Machine Learning Engineering | Synthetic Customer Churn Prediction
 
-> **Important:** Simulated labels and test metrics do not establish real-world predictive accuracy. Do not use predictions for actual customer decisions.
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Machine%20Learning-F7931E?logo=scikitlearn&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerisation-2496ED?logo=docker&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Development-orange)
 
-## Requirements
-- Python 3.10+ (Python 3.11 recommended)
-- PyCharm or a terminal
+An end-to-end **machine learning engineering prototype** demonstrating reproducible model training, evaluation, API development, interactive predictions and software testing.
 
-## Run on macOS / Linux (PyCharm Terminal)
+Built using Python, Scikit-learn, FastAPI, Streamlit and Docker to explore the foundations of MLOps and production-oriented machine learning systems.
+
+> **Project Status:** Educational prototype under development. All customer data and churn labels are synthetic. The project is not a production-ready system.
+
+---
+
+## 📌 Project Overview
+
+This project demonstrates how a machine learning model can be developed, evaluated and integrated with a prediction API and interactive web application.
+
+It includes:
+
+- Synthetic customer data generation
+- Reproducible machine learning training
+- Logistic regression classification
+- Experimental random forest modelling
+- Model evaluation and saved artifacts
+- FastAPI prediction endpoints
+- Interactive Streamlit dashboard
+- Automated Python tests
+- Docker containerisation
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    A[Synthetic Customer Data] --> B[Data Preparation]
+    B --> C[Train/Test Split]
+    C --> D[Model Training]
+    D --> E[Model Evaluation]
+    E --> F[Saved Model Artifact]
+    F --> G[FastAPI Service]
+    H[Streamlit Dashboard] --> G
+    G --> I[Simulated Churn Prediction]
+```
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Application development |
+| Pandas & NumPy | Data processing |
+| Scikit-learn | Machine learning |
+| FastAPI | REST prediction API |
+| Pydantic | Input validation |
+| Streamlit | Interactive user interface |
+| Pytest | Automated testing |
+| Docker | Containerisation |
+| GitHub | Version control |
+
+## ✨ Key Features
+
+**Machine Learning**
+
+- Deterministic synthetic dataset generation
+- Stratified training and testing split
+- Feature scaling and logistic regression
+- Classification probability prediction
+- Evaluation using accuracy, ROC-AUC and average precision
+
+**Prediction API**
+
+- `/predict` endpoint
+- `/health` endpoint
+- Input validation
+- Automatic Swagger API documentation
+- JSON prediction responses
+
+**Interactive Dashboard**
+
+- Customer tenure controls
+- Monthly spending controls
+- Support ticket inputs
+- Simulated churn probability display
+- Prediction classification
+
+**Software Engineering**
+
+- Modular Python files
+- Automated unit and API tests
+- Dockerfile for API execution
+- Reproducible training configuration
+
+## 📁 Project Structure
+
+The intended project organisation is:
+
+```text
+production-mlops-platform/
+│
+├── src/
+│   ├── __init__.py
+│   ├── features.py
+│   ├── train.py
+│   ├── model.py
+│   ├── api.py
+│   └── dashboard.py
+│
+├── test_api.py
+├── test_model.py
+├── test_train.py
+├── Dockerfile
+├── requirements.txt
+└── README.md
+```
+
+**Important:** The current GitHub repository has its Python files at the root. They must be moved into `src/` to match the existing imports and Dockerfile before the commands below can work correctly.
+
+## 💻 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/tasnem-tech/production-mlops-platform.git
+cd production-mlops-platform
+```
+
+### 2. Create a virtual environment
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
 python -m pip install -r requirements.txt
-python -m pytest -q
+```
+
+### 4. Train the model
+
+After correcting the `src/` directory structure:
+
+```bash
 python -m src.train
+```
+
+### 5. Start the API
+
+```bash
 python -m uvicorn src.api:app --reload
 ```
 
-API documentation: http://localhost:8000/docs
+API documentation:
 
-**In a second PyCharm Terminal** (activate `.venv` there too):
+http://localhost:8000/docs
+
+### 6. Launch the dashboard
+
+In another terminal:
 
 ```bash
 source .venv/bin/activate
 python -m streamlit run src/dashboard.py
 ```
 
-Dashboard: http://localhost:8501
+Dashboard:
 
-### Windows PowerShell
+http://localhost:8501
 
-```powershell
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m pytest -q
-python -m src.train
-python -m uvicorn src.api:app --reload
-```
+Both FastAPI and Streamlit must be running for predictions to work.
 
-Open a second PowerShell terminal, activate `.venv`, then run `python -m streamlit run src/dashboard.py`.
-
-## API request
+## 🔌 API Example
 
 ```bash
 curl -X POST http://localhost:8000/predict \
-  -H 'Content-Type: application/json' \
-  -d '{"tenure_months":12,"monthly_spend":90,"support_tickets":3}'
+  -H "Content-Type: application/json" \
+  -d '{
+    "tenure_months": 12,
+    "monthly_spend": 90,
+    "support_tickets": 3
+  }'
 ```
 
-API validates ranges and rejects extra fields. `GET /health` provides a basic readiness check.
+The API returns a simulated churn probability, classification and an educational-use warning.
 
-## Architecture
-
-`Synthetic generator → stratified train/test split → StandardScaler + LogisticRegression → local joblib artifact → FastAPI → Streamlit UI`
-
-The scaler is fit only on the training split. Metrics are saved to `artifacts/metrics.json` and include accuracy, ROC-AUC and average precision on a held-out synthetic test set. This is a single split, not robust production evaluation.
-
-## Project files
-
-```text
-src/
-  __init__.py
-  features.py
-  train.py
-  api.py
-  dashboard.py
-tests/
-  test_train.py
-  test_api.py
-.github/workflows/tests.yml
-Dockerfile
-.dockerignore
-.gitignore
-requirements.txt
-README.md
-```
-
-## Docker (API only)
+## 🧪 Automated Testing
 
 ```bash
-docker build -t synthetic-churn-api .
-docker run --rm -p 8000:8000 synthetic-churn-api
+python -m pytest -q
 ```
 
-The Docker image trains a model at build time. The dashboard is not included as a running service in the container.
+The repository includes tests for model training, reproducibility, API responses and input validation.
 
-## Security and deployment notes
+## 🐳 Docker
 
-- Do not load untrusted `.joblib` model artifacts: deserialization can execute code.
-- The API has **no authentication, rate limiting or TLS termination**. Run locally; do not expose directly to the public internet.
-- Streamlit calls the API via `API_URL` (default `http://localhost:8000`). Deploying Streamlit alone will not deploy the API.
-- Do not upload real customer data, API secrets or model artifacts from untrusted sources.
-- CI runs tests only; it does not deploy the application.
+After correcting the package structure:
 
-## Roadmap
+```bash
+docker build -t churn-api .
+docker run --rm -p 8000:8000 churn-api
+```
 
-- [ ] Cross-validation, calibration and uncertainty assessment
-- [ ] MLflow tracking and model registry
-- [ ] Evidently drift and data-quality reporting
-- [ ] Artifact provenance, signed builds and versioning
-- [ ] Structured logging, observability, authentication and rate limiting
-- [ ] Managed cloud deployment with rollback
-- [ ] Real-world validation with consented, representative data
+Docker runs the FastAPI service. Streamlit remains a separate application.
 
-## Ethics
+## 📊 Model Evaluation
 
-All data are simulated. This project demonstrates software engineering patterns rather than evidence of real-world churn prediction.
+| Metric | Purpose |
+|---|---|
+| Accuracy | Classification correctness |
+| ROC-AUC | Class discrimination |
+| Average Precision | Precision-recall performance |
+| Positive Rate | Class distribution |
+
+Evaluation results are generated from synthetic data and must not be interpreted as validated real-world performance.
+
+## 🔐 Security and Limitations
+
+- Uses synthetic data only.
+- No real customer information is required.
+- No authentication or rate limiting is currently implemented.
+- The API should not be exposed directly to the public internet.
+- Model artifacts must come from trusted sources.
+- GitHub Actions CI and a verified public deployment have not yet been added.
+
+## 🚀 Development Roadmap
+
+- [ ] Correct Python source folder structure
+- [ ] Verify the complete application locally
+- [ ] Add GitHub Actions CI/CD testing
+- [ ] Add dashboard screenshots
+- [ ] Publish a secure live demonstration
+- [ ] Integrate MLflow experiment tracking
+- [ ] Add model registry and versioning
+- [ ] Implement drift monitoring
+- [ ] Introduce structured logging
+- [ ] Add authentication and API security
+- [ ] Document cloud deployment and rollback
+
+## 💡 Skills Demonstrated
+
+Python · Machine Learning · Data Processing · Model Evaluation · FastAPI · Streamlit · REST APIs · Pytest · Docker · GitHub
+
+## 👩‍💻 Developer
+
+**Tasnem Islam Prome**
+
+BSc (Hons) Applied Computing  
+University of Portsmouth
+
+Interested in AI, Machine Learning Engineering, Data Analytics and Software Development.
+
+**GitHub:** [tasnem-tech](https://github.com/tasnem-tech)
+
+**Project:** [Production MLOps Platform](https://github.com/tasnem-tech/production-mlops-platform)
+
+---
+
+*An educational machine learning engineering portfolio project developed using synthetic data.*
