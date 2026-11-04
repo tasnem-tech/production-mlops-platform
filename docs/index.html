@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Production MLOps Platform: a machine learning engineering portfolio project.">
+  <title>Production MLOps Platform | Tasnem Islam Prome</title>
+  <style>
+    :root {
+      --bg: #090f1f;
+      --panel: #141e33;
+      --text: #f3f6ff;
+      --muted: #a4b4cd;
+      --accent: #65e2c0;
+      --blue: #86a9ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1080px; margin: auto; padding: 0 24px; }
+    header {
+      border-bottom: 1px solid #27334a;
+      padding: 22px 0;
+    }
+    nav { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .brand { font-weight: 800; letter-spacing: -.5px; }
+    .navlink { color: var(--muted); }
+    .hero { padding: 100px 0 75px; }
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid #2a806b;
+      border-radius: 30px;
+      padding: 7px 14px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.07;
+      letter-spacing: -3px;
+      margin: 25px 0;
+    }
+    h1 span { color: var(--accent); }
+    .lead { max-width: 700px; color: var(--muted); font-size: 19px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #061521;
+      font-weight: 700;
+    }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #40506b;
+      color: var(--text);
+    }
+    section { padding: 50px 0; }
+    h2 { font-size: 30px; letter-spacing: -1px; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid #2a3955;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .card h3 { margin-top: 0; color: var(--accent); }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag {
+      background: #1c2b46;
+      border: 1px solid #354666;
+      border-radius: 8px;
+      padding: 8px 13px;
+      font-size: 14px;
+    }
+    .pipeline {
+      background: #101b2e;
+      border: 1px solid #2c3d5b;
+      border-radius: 15px;
+      padding: 24px;
+      color: var(--blue);
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .notice {
+      border-left: 3px solid var(--accent);
+      padding: 14px 20px;
+      background: #102438;
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 50px;
+      padding: 28px 0;
+      border-top: 1px solid #27334a;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 65px 0 35px; }
+      h1 { letter-spacing: -1.5px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#" class="brand">◆ MLOps Platform</a>
+      <a class="navlink"
+         href="https://github.com/tasnem-tech/production-mlops-platform">
+         View GitHub Repository ↗
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <span class="eyebrow">MACHINE LEARNING ENGINEERING · PORTFOLIO PROJECT</span>
+
+      <h1>Building smarter<br><span>ML systems.</span></h1>
+
+      <p class="lead">
+        A modular machine learning engineering prototype
+        for synthetic customer churn prediction, featuring
+        reproducible training, model evaluation, a FastAPI
+        prediction service and a Streamlit interface.
+      </p>
+
+      <div class="buttons">
+        <a class="btn"
+           href="https://github.com/tasnem-tech/production-mlops-platform">
+          Explore Source Code ↗
+        </a>
+        <a class="btn secondary" href="#architecture">
+          Explore Architecture
+        </a>
+      </div>
+    </div>
+
+    <section id="features">
+      <h2>Platform Capabilities</h2>
+      <p class="muted">Exploring the foundations of reproducible machine learning software.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>01 · Machine Learning</h3>
+          <p>Reproducible synthetic data generation,
+          Scikit-learn training pipelines and classification.</p>
+        </div>
+        <div class="card">
+          <h3>02 · Model Evaluation</h3>
+          <p>Held-out testing using accuracy,
+          ROC-AUC and average precision metrics.</p>
+        </div>
+        <div class="card">
+          <h3>03 · REST API</h3>
+          <p>FastAPI prediction endpoint with
+          Pydantic input validation and API documentation.</p>
+        </div>
+        <div class="card">
+          <h3>04 · Interactive Interface</h3>
+          <p>Streamlit customer-input controls for
+          simulated churn probability predictions.</p>
+        </div>
+        <div class="card">
+          <h3>05 · Automated Testing</h3>
+          <p>Pytest-based tests for model
+          behaviour, reproducibility and API responses.</p>
+        </div>
+        <div class="card">
+          <h3>06 · Containerisation</h3>
+          <p>Docker configuration for packaging
+          the FastAPI inference service.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2>System Architecture</h2>
+      <p class="muted">An overview of the intended prediction workflow.</p>
+      <div class="pipeline">
+        Synthetic Data → Preprocessing → Model Training
+        → Evaluation → Model Artifact → FastAPI → Streamlit
+      </div>
+    </section>
+
+    <section>
+      <h2>Technology Stack</h2>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Pydantic</span>
+        <span class="tag">Pytest</span>
+        <span class="tag">Docker</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Project Status</h2>
+      <div class="notice">
+        This is an educational prototype currently under development.
+        The repository's Python package structure requires correction
+        before the full application can run as documented.
+        The website is a static project showcase, not a live
+        prediction dashboard. All modelling uses synthetic data.
+      </div>
+    </section>
+
+    <section>
+      <h2>About the Developer</h2>
+      <p><strong>Tasnem Islam Prome</strong></p>
+      <p class="muted">
+        BSc (Hons) Applied Computing · University of Portsmouth
+      </p>
+      <p class="muted">
+        Interested in machine learning engineering, data analytics,
+        applied AI and software development.
+      </p>
+      <a class="btn secondary" href="https://github.com/tasnem-tech">
+        GitHub Profile ↗
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Tasnem Islam Prome · Production MLOps Platform
+    </div>
+  </footer>
+</body>
+</html>
